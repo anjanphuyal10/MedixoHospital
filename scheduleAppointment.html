@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml" />
+    <title>Schedule An Appointment</title>
+    <style>
+      .appointbutton {
+        line-height: 50px;
+      }
+
+      .appointbutton button {
+        margin-left: 658px;
+        padding: 6px;
+        background: transparent;
+        border: 2px solid aliceblue;
+        border-radius: 2px;
+      }
+
+      .appointbutton button a {
+        text-decoration: none;
+        color: aliceblue;
+      }
+
+      .appointbutton button:hover {
+        border: transparent;
+        transition: 0.4s;
+      }
+
+      .patientLogin img {
+        color: hsl(182, 100%, 35%);
+        filter: hue-rotate(180deg);
+        transition: transform 0.3s ease;
+      }
+
+      .patientLogin img:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+      }
+
+      @keyframes slideFromLeft {
+        from {
+          transform: translateX(-200px);
+        }
+
+        to {
+          transform: translateX(0);
+        }
+      }
+
+      .scheduleAppointmentMain {
+        animation-name: slideFromLeft;
+        animation-duration: 2s;
+      }
+
+      /* *************************** */
+      .form-popup {
+        display: none;
+        position: fixed;
+        top: 0%;
+        left: 0%;
+        border: 1px solid hsl(182, 100%, 35%);
+        opacity: 100%;
+      }
+
+      .open-button {
+        color: white;
+        padding: 16px 20px;
+        border: none;
+        cursor: pointer;
+        position: fixed;
+        bottom: 23px;
+        right: 28px;
+        width: 280px;
+      }
+
+      #returningPatientLoginForm {
+        margin: 7% 35%;
+        background-color: #fff;
+        height: 70%;
+        width: 25%;
+        border-radius: 10px;
+      }
+
+      #newPatientCreateForm {
+        margin-left: 35%;
+        margin-top: 10%;
+        background-color: #fff;
+        height: 50%;
+        width: 25%;
+        border-radius: 10px;
+      }
+
+      .form-container input {
+        width: 50%;
+        border-radius: 8px;
+      }
+
+      .btn {
+        transition: transform 0.3s ease;
+      }
+
+      .btn:hover {
+        color: #019ba9;
+        transform: scale(1.05);
+      }
+
+      .forgotPassword {
+        text-decoration: none;
+        color: #019ba9;
+        
+      }
+
+      .forgotPassword:hover {
+        color: #019ba9;
+        text-decoration: underline;
+      }
+
+      .goBack {
+        transition: transform ease 0.3s;
+      }
+
+      .goBack:hover {
+        transform: scale(1.2);
+      }
+    </style>
+  </head>
+
+  <body style="background-color: #f8f9fa">
+    <button
+      onclick="goBack();"
+      class="goBack"
+      style="
+        padding: 8px 16px;
+        position: absolute;
+        margin-top: 10px;
+        background-color: hsl(182, 100%, 35%);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-left: 2%;
+      "
+    >
+      Go Back
+    </button>
+    <div
+      align="center"
+      class="scheduleAppointmentMain"
+      style="
+        margin: auto;
+        margin-top: 1vw;
+        border-radius: 20px;
+        width: 65vw;
+        height: 45vw;
+        background-color: #fff;
+        margin-bottom: 1vw;
+      "
+    >
+      <div class="scheduleAppointment">
+        <div style="display: flex">
+          <div style="display: flex">
+            <img
+              src="images/medixoLogoSmall.png"
+              alt="Medixo Logo"
+              style="height: 10vw; width: auto; float: left; margin-left: 3vw"
+            />
+            <div
+              style="color: #294753; font-size: 3vw; margin: 3.4vw 4vw"
+              class="scheduleAppointmentHead"
+            >
+              <em>Schedule An Appointment</em>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 1.5vw; margin-left: 7vw; display: flex">
+            <strong>Welcome to Medixo Centers!</strong>
+          </div>
+          <br />
+          <div
+            style="
+              color: #938d8d;
+              font-size: 1vw;
+              margin-left: 7vw;
+              display: flex;
+            "
+          >
+            Is this a request for a new or a returning patient?
+          </div>
+          <br /><br />
+        </div>
+      </div>
+      <div class="patientLogin" style="display: flex">
+        <div style="margin: auto; border: none; text-decoration: none">
+          <button
+            id="newPatient"
+            style="border: none; text-decoration: none; padding: 0px"
+          >
+            <img
+              src="images/newPatient.png"
+              alt="newPatient image"
+              style="height: 5.5vw; width: auto"
+            />
+          </button>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <button
+            id="returningPatient"
+            style="border: none; text-decoration: none; padding: 0px"
+            onclick="openForm();"
+          >
+            <img
+              src="images/returningPatient.png"
+              alt="returningPatient image"
+              style="height: 5.5vw; width: auto"
+            />
+          </button>
+          <br />
+          <br />
+        </div>
+      </div>
+      <hr align="center" style="width: 60vw; margin: auto" />
+      <br />
+      <div style="color: #726d6d; font-weight: bold; font-size: 1.1vw">
+        If you are returning patient, please schedule your appointment with the
+        provider that you usually see at our clinics.
+      </div>
+      <br /><br />
+      <div
+        style="
+          color: #726d6d;
+          font-weight: bold;
+          display: flex;
+          margin-left: 4vw;
+        "
+      >
+        A few steps after you schedule a telehealth visit:
+      </div>
+      <br />
+      <div
+        style="
+          color: #726d6d;
+          font-style: italic;
+          width: 55vw;
+          display: flex;
+          text-align: justify;
+          line-height: 1.6vw;
+        "
+      >
+        1.You will receive a text or email from us confirming your appointment
+        date and time. <br />
+        2.You will also receive a link through text or email to fill out your
+        registration paperwork prior to your appointment and provide the best
+        way to reach you for your visit.
+        <br />
+        3.We will contact you 10 minutes before your appointment to work through
+        any missing paperwork and for you to pay for your visit. <br />
+        4.Your provider will call you to complete your visit.
+      </div>
+    </div>
+    <div
+      class="form-popup"
+      id="returningPatientLoginForm"
+      style="align-content: center"
+    >
+      <br />
+      <h1 style="color: hsl(182, 100%, 35%); text-align: center">Login</h1>
+
+      <form
+        method="POST"
+        action="php/checkUser.php"
+        class="form-container"
+        style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 20px;
+        "
+      >
+        <label style="color: hsl(182, 100%, 35%); font-weight: bold"
+          >User ID:</label
+        >
+        <input
+          type="text"
+          name="userId"
+          placeholder="Given By Hospital"
+          required
+          style="
+            border: 2px solid hsl(182, 100%, 35%);
+            padding: 5px;
+            margin-bottom: 10px;
+            width: 100%;
+            text-align: center;
+          "
+        />
+
+        <label style="color: hsl(182, 100%, 35%); font-weight: bold"
+          >Full Name:</label
+        >
+        <input
+          type="text"
+          name="fullName"
+          placeholder="Full Name"
+          required
+          style="
+            border: 2px solid hsl(182, 100%, 35%);
+            padding: 5px;
+            margin-bottom: 10px;
+            width: 100%;
+            text-align: center;
+          "
+        />
+
+        <label style="color: hsl(182, 100%, 35%); font-weight: bold"
+          >Phone Number:</label
+        >
+        <input
+          type="text"
+          name="phoneNumber"
+          placeholder="Phone Number"
+          required
+          style="
+            border: 2px solid hsl(182, 100%, 35%);
+            padding: 5px;
+            margin-bottom: 10px;
+            width: 100%;
+            text-align: center;
+          "
+        /><br />
+        <br />
+
+        <button
+          type="submit"
+          class="btn"
+          style="
+            background-color: hsl(182, 100%, 35%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 8px;
+          "
+        >
+          Login
+        </button>
+        <button
+          type="button"
+          class="btn cancel"
+          onclick="returningPatientClose();"
+          style="
+            background-color: white;
+            color: hsl(182, 100%, 35%);
+            border: 2px solid hsl(182, 100%, 35%);
+            padding: 10px 20px;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 8px;
+          "
+        >
+          Close
+        </button>
+        <br /><a class="forgotPassword" href="php/forgotPassword.php"
+          >Forgot Password?</a
+        >
+      </form>
+    </div>
+
+    <div
+      class="form-popup"
+      id="newPatientCreateForm"
+      style="align-content: center"
+    >
+      <form action="php/addData.php" method="POST" class="form-container">
+        <h1 style="color: hsl(182, 100%, 35%); text-align: center">Create</h1>
+
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+          "
+        >
+          <label
+            for="fullName"
+            style="color: hsl(182, 100%, 35%); font-weight: bold"
+            >Full Name:</label
+          >
+          <input
+            type="text"
+            name="fullName"
+            id="fullName"
+            placeholder="Full Name"
+            style="
+              border: 2px solid hsl(182, 100%, 35%);
+              padding: 5px;
+              margin-bottom: 10px;
+              width: 100%;
+              text-align: center;
+            "
+            required
+            autocomplete="off"
+          />
+
+          <label
+            for="phoneNumber"
+            style="color: hsl(182, 100%, 35%); font-weight: bold"
+            >Phone Number:</label
+          >
+          <input
+            type="tel"
+            name="phoneNumber"
+            id="phoneNumber"
+            placeholder="Phone Number"
+            style="
+              border: 2px solid hsl(182, 100%, 35%);
+              padding: 5px;
+              margin-bottom: 10px;
+              width: 100%;
+              text-align: center;
+            "
+            required
+            autocomplete="off"
+          />
+
+          <button
+            type="submit"
+            class="btn"
+            style="
+              background-color: hsl(182, 100%, 35%);
+              color: white;
+              border: none;
+              padding: 10px 20px;
+              margin-bottom: 10px;
+              cursor: pointer;
+              width: 100%;
+              border-radius: 8px;
+            "
+          >
+            Create
+          </button>
+          <button
+            type="button"
+            class="btn cancel"
+            onclick="newPatientClose();"
+            style="
+              background-color: white;
+              color: hsl(182, 100%, 35%);
+              border: 2px solid hsl(182, 100%, 35%);
+              padding: 10px 20px;
+              cursor: pointer;
+              width: 100%;
+              border-radius: 8px;
+            "
+          >
+            Close
+          </button>
+        </div>
+      </form>
+    </div>
+    <script>
+      function goBack() {
+        window.location.href = "index.php";
+      }
+    </script>
+
+    <script>
+      document.getElementById("returningPatient").onclick = returningPatient;
+      document.getElementById("newPatient").onclick = newPatient;
+
+      function returningPatient() {
+        document.getElementById("returningPatientLoginForm").style.display =
+          "block";
+      }
+
+      function returningPatientClose() {
+        document.getElementById("returningPatientLoginForm").style.display =
+          "none";
+      }
+
+      function newPatient() {
+        document.getElementById("newPatientCreateForm").style.display = "block";
+      }
+
+      function newPatientClose() {
+        document.getElementById("newPatientCreateForm").style.display = "none";
+      }
+    </script>
+  </body>
+</html>

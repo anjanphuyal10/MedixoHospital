@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>User Creation</title>
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml" />
+
+    <style>
+      body {
+        background-color: orange;
+        color: white;
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+
+      .message {
+        margin-top: 100px;
+        font-size: 24px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="message">
+      <p>User created successfully!</p>
+      <p>Login in <span id="timer">1</span> seconds...</p>
+    </div>
+
+    <script>
+      // Redirect after 1s seconds
+      var countdown = 1;
+      var timer = setInterval(function () {
+        countdown--;
+        document.getElementById("timer").textContent = countdown;
+        if (countdown <= 0) {
+          clearInterval(timer);
+          window.location.href = "scheduleAppointment.html";
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
