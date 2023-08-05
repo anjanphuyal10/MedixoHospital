@@ -57,16 +57,14 @@ function sendSMS($to, $message)
     ]
   );
 }
-
-$doctorQuery = "SELECT doctorId, fullName FROM doctor";
+$doctorId = mysqli_real_escape_string($connection, $_GET['doctorId']);
+$doctorQuery = "SELECT fullName FROM doctor WHERE doctorId = '$doctorId'";
 $appointmentQuery = "SELECT time, date FROM appointments";
-
 $result = mysqli_query($connection, $doctorQuery);
 $resultAppointment = mysqli_query($connection, $appointmentQuery);
 
 if ($result && $resultAppointment) {
   while ($row = mysqli_fetch_assoc($result)) {
-    $doctorId = $row['doctorId'];
     $fullName = $row['fullName'];
   }
   while ($row = mysqli_fetch_assoc($resultAppointment)) {
@@ -77,8 +75,6 @@ if ($result && $resultAppointment) {
   $message = "Your Appointment with doctor " . $fullName . " is successfully scheduled at " . "$date" . " and at $time o'clock.";
   sendSMS('+9779847950672', $message);
 }
-
-
 if (!mysqli_query($connection, $doctorQuery) && !mysqli_query($connection, $appointmentQuery)) {
   echo "Error: " . mysqli_error($connection);
 }

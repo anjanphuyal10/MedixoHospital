@@ -22,7 +22,7 @@
   <header class="header" data-header>
     <div class="container">
 
-      <a href="#" class="logo">
+      <a href="index.php" class="logo">
         <img src="images/medixoLogoSmall.png" width="136" height="46" alt="medixo home" styl>
       </a>
 
@@ -46,12 +46,13 @@
             <a href="index.php" class="navbar-link title-md">Home</a>
           </li>
 
-          <li class="navbar-item">
-            <a href="#doctorsListings" class="navbar-link title-md">Doctors</a>
-          </li>
-
+          
           <li class="navbar-item">
             <a href="#serviceBar" class="navbar-link title-md">Services</a>
+          </li>
+          
+          <li class="navbar-item">
+            <a href="#doctorsListings" class="navbar-link title-md">Doctors</a>
           </li>
 
           <li class="navbar-item">
@@ -116,102 +117,43 @@
 
 
       <!-- ***************** Service ********************** -->
+      <?php include 'php/connectToDatabase.php'; ?>
       <section class="service">
         <div class="container" id="serviceBar">
-
           <ul class="service-list">
 
-            <li>
-              <div class="service-card">
-
-                <div class="card-icon">
-                  <img src="images/icon-1.png" width="71" height="71" loading="lazy" alt="icon">
+            <?php
+            $query = "SELECT * FROM services LIMIT 4";
+            $result = mysqli_query($connection, $query);
+            while ($row = mysqli_fetch_assoc($result)) {
+              $iconSrc = $row['icon'];
+              $title = $row['title'];
+              $description = $row['description'];
+              ?>
+              <li>
+                <div class="service-card">
+                  <div class="card-icon">
+                    <img src="<?php echo $iconSrc; ?>" width="71" height="71" alt="icon">
+                  </div>
+                  <h3 class="headline-sm card-title">
+                    <a href="#"><?php echo $title; ?></a>
+                  </h3>
+                  <p class="card-text" style="text-align: justify;">
+                    <?php echo $description; ?>
+                  </p>
                 </div>
-
-                <h3 class="headline-sm card-title">
-                  <a href="#">ENT</a>
-                </h3>
-
-                <p class="card-text" style="text-align: justify;">
-                  ENT, short for Ear, Nose, and Throat, is a specialized medical field that focuses on 
-                  diagnosing and treating disorders and conditions related to the ears, nose, throat, and related structures.
-                </p>
-
-                <a href="#" class="btn-circle"><img src="images/arrowRight.png" alt="Arrow Pointing Right"
-                    style="height: 20px;"></a>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="service-card">
-
-                <div class="card-icon">
-                  <img src="images/icon-2.png" width="71" height="71" alt="icon">
-                </div>
-
-                <h3 class="headline-sm card-title">
-                  <a href="#">Neurology</a>
-                </h3>
-
-                <p class="card-text" style="text-align: justify;">
-                 Neurology is a medical specialty that focuses on the diagnosis and treatment of disorders related to the nervous system. This includes the brain, spinal cord, and peripheral nerves. 
-                 <br><br>
-                </p>
-
-                <a href="#" class="btn-circle"><img src="images/arrowRight.png" alt="Arrow Pointing Right"
-                    style="height: 20px;"></a>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="service-card">
-
-                <div class="card-icon">
-                  <img src="images/icon-3.png" width="71" height="71" alt="icon">
-                </div>
-
-                <h3 class="headline-sm card-title">
-                  <a href="#">Pulmonology</a>
-                </h3>
-
-                <p class="card-text" style="text-align: justify;">
-                  Pulmonology is a specialized field in medicine that focuses on the diagnosis, treatment, and management of diseases related to the respiratory system. 
-                  <br><br><br>
-                </p>
-
-                <a href="#" class="btn-circle"><img src="images/arrowRight.png" alt="Arrow Pointing Right"
-                    style="height: 20px;"></a>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="service-card">
-
-                <div class="card-icon">
-                  <img src="images/icon-4.png" width="71" height="71" alt="icon">
-                </div>
-
-                <h3 class="headline-sm card-title">
-                  <a href="#">Orthopedics</a>
-                </h3>
-
-                <p class="card-text" style="text-align: justify;">
-                 Orthopedics is a medical specialty that focuses on the diagnosis, treatment, and prevention of conditions and injuries related to the musculoskeletal system. 
-                </p><br><br>
-
-                <a href="#" class="btn-circle"><img src="images/arrowRight.png" alt="Arrow Pointing Right"
-                    style="height: 20px;"></a>
-
-              </div>
-            </li>
-
+              </li>
+            <?php } ?>
           </ul>
-
+          <div style="text-align: center;">
+            <a href="php/viewMoreServices.php" class="btn has-before title-md" style=" text-align: center; margin-left: 975px; background-color: hsl(182, 100%, 35%); color: white; width: 197px; border: none; padding: 10px 20px; cursor: pointer; border-radius: 8px; margin-top: 20px;">View More Services</a>
+          </div>
         </div>
       </section>
+            
+      <?php
+      mysqli_close($connection);
+      ?>
 
 
 
@@ -296,6 +238,7 @@
 
       <!-- ********************* Listing of Services ************************* -->
       <section class="section listing" id="doctorsListings">
+        <br>
         <div class="container">
 
           <ul class="grid-list">
@@ -307,28 +250,23 @@
             </li>
 
             <?php
-            include 'php/connectToDatabase.php'; // Assuming you have a file to establish the database connection
-            
+            include 'php/connectToDatabase.php';
+
             // Query to fetch doctor data
             $query = "SELECT fullName, speciality FROM doctor";
             $result = mysqli_query($connection, $query);
 
-            // Check if there are any doctors
             if (mysqli_num_rows($result) > 0) {
-              // Array of icon numbers
               $icons = array(1, 2, 3, 4, 5, 6, 7);
 
-              // Loop through each row and generate listing card
               while ($row = mysqli_fetch_assoc($result)) {
                 $fullName = $row['fullName'];
                 $speciality = $row['speciality'];
 
                 if (!empty($icons)) {
-                  // Randomly select an icon number
                   $randomIcon = array_rand($icons);
                   $iconNumber = $icons[$randomIcon];
 
-                  // Remove the selected icon number from the array
                   unset($icons[$randomIcon]);
                 } else {
                   $icons = array(1, 2, 3, 4, 5, 6, 7);
@@ -356,11 +294,9 @@
 
             mysqli_close($connection);
             ?>
-
-
           </ul>
-
         </div>
+        <br>
       </section>
 
       <!-- ************************** Footer ***************************  -->
@@ -371,7 +307,7 @@
 
             <div class="footer-brand">
 
-              <a href="#" class="logo">
+              <a href="index.php" class="logo">
                 <img src="images/medixoLogoSmall.png" width="136" height="46" alt="Medixo logo">
               </a>
 
@@ -389,7 +325,7 @@
 
                     <p>
                       Inquiries : <a href="mailto:Info@medixohospital.com"
-                        class="contact-link">Info@medixohospital.com</a>
+                        class="contact-link">info@medixohospital.com</a>
                     </p>
                   </div>
 
@@ -488,9 +424,7 @@
           currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
         }
 
-        setInterval(rotateQuotes, 5000); // Change the time interval (in milliseconds) as needed
-
-        // Initial quote rotation
+        setInterval(rotateQuotes, 5000);
         rotateQuotes();
       </script>
 

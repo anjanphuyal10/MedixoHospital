@@ -10,23 +10,23 @@ $userId = "";
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-          // Retrieve form data
-          $fullName = $_POST['fullName'];
-          $phoneNumber = $_POST['phoneNumber'];
+  // Retrieve form data
+  $fullName = $_POST['fullName'];
+  $phoneNumber = $_POST['phoneNumber'];
 
 
-          $query = "SELECT userId FROM userLogin WHERE fullName = ? AND phoneNumber = ?";
-          $stmt = $connection->prepare($query);
-          $stmt->bind_param("ss", $fullName, $phoneNumber);
-          $stmt->execute();
-          $stmt->bind_result($userId);
+  $query = "SELECT userId FROM userLogin WHERE fullName = ? AND phoneNumber = ?";
+  $stmt = $connection->prepare($query);
+  $stmt->bind_param("ss", $fullName, $phoneNumber);
+  $stmt->execute();
+  $stmt->bind_result($userId);
 
 
-          if ($stmt->fetch()) {
-                    echo "<h1>Please note this User ID in order to Login</h1>";
-                    echo "<h1>" . "User ID: $userId" . "</h1>";
-                    echo "<div id='countdown'>Redirecting in 10 seconds...</div>";
-                    echo "<script>
+  if ($stmt->fetch()) {
+    echo "<h1>Please note this User ID in order to Login</h1>";
+    echo "<h1>" . "User ID: $userId" . "</h1>";
+    echo "<div id='countdown'>Redirecting in 10 seconds...</div>";
+    echo "<script>
                               var count = 10;
                               var countdownElement = document.getElementById('countdown');
                                         var countdownInterval = setInterval(function() {
@@ -42,10 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                           formDiv.style.display = 'none';
                                         }
                               </script>";
-          } else {
-                    echo "Invalid Credentialss";
-          }
-          $stmt->close();
+  } else {
+    echo "Invalid Credentialss";
+  }
+  $stmt->close();
 }
 ?>
 
