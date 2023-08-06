@@ -141,6 +141,7 @@
                   <p class="card-text" style="text-align: justify;">
                     <?php echo $description; ?>
                   </p>
+                 
                 </div>
               </li>
             <?php } ?>

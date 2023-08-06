@@ -33,6 +33,7 @@
       width: 170px;
       border-color: hsl(186, 100%, 19%);
       border-radius: 20px;
+      
     }
     input[type=submit] {
       padding: 8px 16px;
