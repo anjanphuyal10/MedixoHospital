@@ -130,20 +130,19 @@
               $title = $row['title'];
               $description = $row['description'];
               ?>
-              <li>
-                <div class="service-card">
-                  <div class="card-icon">
-                    <img src="<?php echo $iconSrc; ?>" width="71" height="71" alt="icon">
-                  </div>
-                  <h3 class="headline-sm card-title">
-                    <a href="#"><?php echo $title; ?></a>
-                  </h3>
-                  <p class="card-text" style="text-align: justify;">
-                    <?php echo $description; ?>
-                  </p>
-                 
-                </div>
-              </li>
+                        <li>
+                          <div class="service-card">
+                            <div class="card-icon">
+                              <img src="<?php echo $iconSrc; ?>" width="71" height="71" alt="icon">
+                            </div>
+                            <h3 class="headline-sm card-title">
+                              <a href="#"><?php echo $title; ?></a>
+                            </h3>
+                            <p class="card-text" style="text-align: justify;">
+                              <?php echo $description; ?>
+                            </p>
+                          </div>
+                        </li>
             <?php } ?>
           </ul>
           <div style="text-align: center;">

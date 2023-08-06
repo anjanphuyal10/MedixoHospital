@@ -271,7 +271,7 @@ $connection->close();
       <th>User Id</th>
       <th>Full Name</th>
       <th>Phone Number</th>
-      <th>Role[ 1 --> User | 2 --> Admin ]</th>
+      <th>Role[ 1 --> User | 2 --> Admin | 3 --> Doctor ]</th>
       <th style="border-radius: 0px 22px 0px 0px;">Actions</th>
     </tr>
     <?php

@@ -17,24 +17,32 @@ if ($result) {
         if ($row['fullName'] === $fullName && $row['phoneNumber'] === $phoneNumber) {
             $roleId = $row['role'];
 
-            // Prepare the SQL query to retrieve the role name based on the role ID
-            $roleQuery = "SELECT * FROM role WHERE roleId = '$roleId'";
-            $roleResult = mysqli_query($connection, $roleQuery);
+            // Redirect the user based on their role
+            switch ($roleId) {
+                case 1: // User
+                    header("Location: ../appointment.php");
+                    break;
+                case 2: // Admin
+                    header("Location: ../php/adminPanel.php");
+                    break;
+                case 3: // Doctor
+                    // Check if the doctor exists in the doctor table
+                    $doctorId = $row['userId'];
+                    $doctorQuery = "SELECT doctorId FROM doctor WHERE doctorId = $doctorId";
+                    $doctorResult = mysqli_query($connection, $doctorQuery);
 
-            if ($roleResult) {
-                if ($roleRow = mysqli_fetch_assoc($roleResult)) {
-                    $roleName = $roleRow['roleName'];
-
-                    // Redirect the user based on the role
-                    if ($roleName === 'user') {
-                        header("Location: ../appointment.php");
-                        exit;
-                    } elseif ($roleName === 'admin') {
-                        header("Location: ../php/adminPanel.php");
-                        exit;
+                    if ($doctorResult && mysqli_num_rows($doctorResult) > 0) {
+                        header("Location: ../php/doctorPanel.php?doctorId=$doctorId");
+                    } else {
+                        header("Location: ../errorUserCheck.html");
                     }
-                }
+                    break;
+                default:
+                    header("Location: ../errorUserCheck.html");
+                    break;
             }
+
+            exit; // Exit after redirection
         }
     }
 }

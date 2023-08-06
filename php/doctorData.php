@@ -33,7 +33,6 @@
       width: 170px;
       border-color: hsl(186, 100%, 19%);
       border-radius: 20px;
-      
     }
     input[type=submit] {
       padding: 8px 16px;
@@ -185,12 +184,12 @@ if ($result->num_rows > 0) {
     $snumber++;
   }
 
-  echo "</table>";
 } else {
   echo "<tr><td colspan='6'>
-          No doctors found.
-          </td></tr>";
+  No doctors found.
+  </td></tr>";
 }
+echo "</table>";
 
 $result->free_result();
 $connection->close();
