@@ -68,6 +68,19 @@ INSERT INTO services (icon, title, description) VALUES
 ('images/icon-2.png', 'Psychiatry', 'Psychiatry is the medical specialty devoted to the diagnosis, prevention, and treatment of deleterious mental conditions. These include various matters related to mood, behaviour, cognition, and perceptions. Initial psychiatric assessment of a person begins with a case history and mental status examination.'),
 ('images/icon-7.png', 'Radiology', 'Radiology is the medical discipline that uses medical imaging to diagnose diseases and guide their treatment, within the bodies of humans and other animals.Radiology is the medical discipline that uses medical imaging to diagnose diseases and guide their treatment, within the bodies of humans and other animals. ');
 
+
+INSERT INTO userLogin (userId, fullName, phoneNumber, role)
+VALUES
+    (210623, 'Prakash Ghimire', '9821314151', 3),
+    (210633, 'Anjan Phuyal', '9821314151', 3),
+    (210621, 'Suman Sigdel', '9821314151', 3),
+    (210622, 'Sanjog Gurung', '9821314151', 3),
+    (210624, 'Sijan Rai', '9821314151', 3),
+    (210625, 'Ashish Subedi', '9821314151', 3),
+    (210626, 'Rushab Khadka', '9821314151', 3),
+    (210627, 'Alish Khadgi', '9821314151', 3),
+    (210628, 'Hari Gopal Yadav', '9821314151', 3);
+    
 INSERT INTO doctor (doctorId, fullName, phoneNumber, speciality, flag)
 VALUES (210630, 'Anjan Baniya', '9823455484', 'Psychiatry', '1');
 

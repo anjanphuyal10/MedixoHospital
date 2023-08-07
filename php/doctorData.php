@@ -10,6 +10,7 @@
       color: #019BA9;
       transition: color 0.2s ease;
     }
+    
     a:hover {
       color: blue;
     }

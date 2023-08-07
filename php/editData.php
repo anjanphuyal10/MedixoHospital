@@ -14,13 +14,14 @@ if ($result) {
   $phoneNumber = $row['phoneNumber'];
   $role = $row['role'];
 }
-mysqli_close($connection);
+mysqli_close($connection); 
 ?>
 <style>
     table {
       width: 100%;
-      border-collapse: collapse;
+      border-collapse: collapse; 
     }
+    
     th, td {
       padding: 8px;
       text-align: left;
