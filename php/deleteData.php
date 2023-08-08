@@ -15,5 +15,6 @@ if ($connection->query($deleteQuerry) === TRUE) {
 }
 
 // Close the database connection  
+
 $conn->close();   
 ?>

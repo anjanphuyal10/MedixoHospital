@@ -2,6 +2,7 @@
 include 'connectToDatabase.php';
 $appointmentId = $_GET['appointmentId'];
 
+
 // Delete the appointment from the appointments table
 $deleteQuery = "DELETE FROM appointments WHERE appointmentId = '$appointmentId'";
 

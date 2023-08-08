@@ -159,6 +159,7 @@ if ($result !== null) {
       No appointments available.
       </td></tr>";
     }
+    
 } else {
     echo "Error executing the query: " . mysqli_error($connection);
 }

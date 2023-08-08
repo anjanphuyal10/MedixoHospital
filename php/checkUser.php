@@ -44,7 +44,6 @@ if ($result) {
             }
 
             exit; // Exit after redirection
-            
         }
     }
 }

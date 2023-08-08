@@ -31,7 +31,7 @@ mysqli_close($connection);
     form {
       margin-bottom: 16px;
     }  
-    
+
     
     input[type=text] {
       padding: 8px;
@@ -40,6 +40,7 @@ mysqli_close($connection);
       border-radius: 20px;
       border-color: blue;
     }
+    
     input[type=submit],
     input[type=button] {
       padding: 8px 16px;
