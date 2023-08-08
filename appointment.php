@@ -5,6 +5,7 @@
   <title>Schedule an Appointment</title>
   <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
   <style>
+    
     *,
     *::before,
     *::after {
@@ -20,6 +21,7 @@
     form {
       margin-bottom: 16px;
     }
+
     
     input[type=text] {
       padding: 8px;
