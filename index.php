@@ -19,7 +19,7 @@
 
   <!-- *************** Header ******************* -->
   
-  <header class="header" data-header>
+  <header class="header" data-header>   
     <div class="container">
 
       <a href="index.php" class="logo">
@@ -60,7 +60,6 @@
           </li>
 
         </ul>
-
       </nav>
 
       <a class="nav-open-btn" data-nav-toggler style="cursor: pointer;">

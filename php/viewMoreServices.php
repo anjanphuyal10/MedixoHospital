@@ -5,6 +5,7 @@
   grid-row-gap: 60px;
   gap: 60px;
 }
+
 </style>
 <?php include 'connectToDatabase.php'; ?>
 <div style="width: 10%; margin: 10px 10px;">
@@ -20,7 +21,7 @@
       while ($row = mysqli_fetch_assoc($result)) {
         $iconSrc = $row['icon'];
         $title = $row['title'];
-        $description = $row['description'];
+        $description = $row['description']; 
         ?>
                                                           <li>
                                                             <div class="container">
@@ -44,7 +45,6 @@
     </ul>
   </div>
 </section>
-
 <?php
 mysqli_close($connection);
 ?>
