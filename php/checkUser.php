@@ -16,6 +16,7 @@ if ($result) {
         // Verify the full name and phone number
         if ($row['fullName'] === $fullName && $row['phoneNumber'] === $phoneNumber) {
             $roleId = $row['role'];
+ 
 
             // Redirect the user based on their role
             switch ($roleId) {
@@ -46,6 +47,7 @@ if ($result) {
         }
     }
 }
+ 
 
 // User ID, full name, or phone number is incorrect or an error occurred
 header("Location: ../errorUserCheck.html");

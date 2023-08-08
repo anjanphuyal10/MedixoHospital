@@ -10,11 +10,12 @@ if (mysqli_connect_errno()) {
 }
 
 // Generate a 6-digit random number for the userId
-$userId = mt_rand(211111, 999999);
+$userId = mt_rand(211111, 999999);  
 
 // Validate and sanitize user input
 $fullName = mysqli_real_escape_string($connection, $_POST['fullName']);
 $phoneNumber = mysqli_real_escape_string($connection, $_POST['phoneNumber']);
+
 
 // Insert data into the "userLogin" table
 $insertQuery = "INSERT INTO userLogin (userId, fullName, phoneNumber, role) VALUES ('$userId', '$fullName', '$phoneNumber', '1')";

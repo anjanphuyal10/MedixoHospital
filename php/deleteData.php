@@ -14,6 +14,6 @@ if ($connection->query($deleteQuerry) === TRUE) {
           echo "Error: " . $deleteQuerry . "<br>" . $connection->error;
 }
 
-// Close the database connection
+// Close the database connection  
 $conn->close();   
 ?>
