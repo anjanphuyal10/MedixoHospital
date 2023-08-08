@@ -12,5 +12,7 @@ if (!mysqli_query($connection, $deleteQuery)) {
           header("Location: appointmentData.php");
           exit();
 }
+
 mysqli_close($connection);
 ?>
+

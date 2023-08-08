@@ -144,11 +144,13 @@
       margin-left: 10px;
     padding: 2px 8px;
     }
+
     .edit:hover
     {
       color: hsl(186, 100%, 19%);
       background-color: white;
     }
+    
     .delete:hover
     {
       background-color: white;

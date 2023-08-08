@@ -30,7 +30,8 @@ mysqli_close($connection);
 
     form {
       margin-bottom: 16px;
-    }
+    }  
+    
     
     input[type=text] {
       padding: 8px;
