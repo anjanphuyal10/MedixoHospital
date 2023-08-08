@@ -25,8 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "Error: " . mysqli_error($connection);
         } else {
             header('location: doctorData.php');
+
         }
     }
-}
-$connection->close();
+}  
+$connection->close();   
 ?>

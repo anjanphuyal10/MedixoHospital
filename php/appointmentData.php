@@ -12,7 +12,7 @@
    .btnGoBack {
         background-color: hsl(186, 100%, 19%);
         color: hsl(0, 0%, 100%);
-        font-weight: 700;
+        font-weight: 700;  
         padding: 12px 36px;
         display: flex;
         align-items: center;
@@ -20,6 +20,7 @@
         border-radius: 6px;
         overflow: hidden;
       }
+
       .btnGoBack:hover{
         color: white;
         background-color:hsl(186, 100%, 19%) ;
